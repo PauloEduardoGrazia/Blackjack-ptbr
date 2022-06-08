@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <time.h>
+#include <stdbool.h>
 #include <locale.h>
 
 
@@ -131,8 +132,11 @@ void DesenhoCartas(int num) // Função para os desenhos das cartas
 		}
 }
 
-/*int Regras(void)
+int Regras(void)
 {
+	char y;
+	
+	do{
 		system("cls");
 		printf("\n\n\n\n\n\n\n\n\n\t - O jogador e o computador recebem inicialmente duas cartas cada.\n");	
 		printf("\t - O jogador inicia a partida, decidindo entre permanecer com a mão que está, ou comprar mais cartas,"); 
@@ -140,11 +144,12 @@ void DesenhoCartas(int num) // Função para os desenhos das cartas
 		printf("\n\t - Quando o jogador passa a vez, o computador joga da mesma maneira, tentando atingir a melhor pontuação.");
 		printf("\n\t - Cada jogador pode no máximo acumular 5 cartas na mão e sempre que alguém estoura o limite de 21 pontos,");
 		printf("\n\t  o adversário vence.");
-		printf("\n\n\n\t  Carregando....");
-		sleep(3);
-		system("cls");
-
-}*/
+		printf("\n\n\t  Pressione s para voltar: ");
+	
+		y = getchar();
+		
+	}while(y != 's');
+}
 
 int Menu(void)
 {
@@ -155,8 +160,10 @@ int Menu(void)
 	int CartasBot[5]={0};
 	int cartas[52];
 	char iniciar;
-	char regras;
-			
+	static bool once = false;
+	
+	if(once == false){	
+		once = true;			
 		do{				
 				printf("\n\n\n\n");  						
 				printf("\t\t\t\t\t _____________________________________\n");          
@@ -167,23 +174,33 @@ int Menu(void)
 				printf("\t\t\t\t\t|                                     |\n");     			
 				printf("\t\t\t\t\t|                                     |\n");
 				printf("\t\t\t\t\t|     1.   Jogador vs Computador      |\n"); 	
-				printf("\t\t\t\t\t|                                     |\n"); 							 						                                  				                
+				printf("\t\t\t\t\t|     2.         Regras               |\n"); 							 						                                  				                
 				printf("\t\t\t\t\t|                                     |\n"); 						
 				printf("\t\t\t\t\t|                                     |\n"); 							   
 				printf("\t\t\t\t\t|                                     |\n"); 
 				printf("\t\t\t\t\t|                                     |\n"); 
-				printf("\t\t\t\t\t| Pressione Enter para iniciar o jogo |\n"); 								
-				printf("\t\t\t\t\t|                                     |\n"); 	
+				printf("\t\t\t\t\t|          Escolha uma Opção          |\n"); 								
+				printf("\t\t\t\t\t|   Pressione o Numero e o Enter...   |\n"); 	
 				printf("\t\t\t\t\t|                                     |\n");
 				printf("\t\t\t\t\t|                                     |\n");   	
 				printf("\t\t\t\t\t|_____________________________________|\n"); 
 			
 			printf("\n\t\t\t\t\t    Criado por: Paulo Eduardo Grazia\n"); 	
 			
-			iniciar = getchar();		
+			iniciar = getchar();
+			
+			if(iniciar != '1'){
+				system("cls");
+			}
+			
+			if(iniciar == '2'){
+				Regras();
+			}
 			
 							
-		}while (iniciar != '\n'); //Inicia usando o Enter
+		}while (iniciar != '1');
+		
+	}
 	
 			
 
